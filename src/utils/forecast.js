@@ -1,5 +1,11 @@
 const request = require('request')
 
+//! Goal: Add new data to forecast
+//1. Update the forecast string to include new data
+//2. Commit your changes
+//3. Push your changes to Github and deploy to Heroku
+//4. Test your work in the live application!
+
 const forecast = (latitude,longitude, callback) => {
     const url = "http://api.weatherstack.com/current?access_key=03a8ad1031ecb34117ccc72368c57cb3&query=" + latitude + ","+ longitude // 28.44416088073966,77.00031893738951"
 
@@ -19,7 +25,9 @@ const forecast = (latitude,longitude, callback) => {
             temperature = body.current.temperature
             // precip = response.body.current.precip
             precip = body.current.precip
-            callback(undefined , "It is currently " + temperature + " degrees out. There is " + precip + "% chance of rain.")
+
+            humidity = body.current.humidity
+            callback(undefined , "It is currently " + temperature + " degrees out. There is " + precip + "% chance of rain. The humidity is " + humidity + "%.")
         }
     })
 
